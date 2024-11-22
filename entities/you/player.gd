@@ -1,4 +1,4 @@
-extends Area2D
+extends CharacterBody2D
 
 #
 # player main script
@@ -51,14 +51,13 @@ func _get_walk_input() -> Vector2:
 	
 
 func _move_player(delta: float, direction: Vector2) -> void:
-	var velocity = direction * (delta * speed)
-	position += velocity
+	velocity = direction * (speed)
+	move_and_slide()
 	
 	# check and clamp to prison walls
 	var wall_inset = Vector2.ZERO
 	if is_in_prison:
 		wall_inset = parent.WALL_INSET
-		print(wall_inset)
 	position.x = clamp(position.x, wall_inset.x, screen_size.x - wall_inset.x)	
 	position.y = clamp(position.y, wall_inset.y, screen_size.y - wall_inset.y)
 	

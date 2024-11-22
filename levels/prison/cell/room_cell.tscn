@@ -1,3 +1,140 @@
-[gd_scene format=3 uid="uid://dy6brmn52mg0b"]
+[gd_scene load_steps=18 format=3 uid="uid://dy6brmn52mg0b"]
+
+[ext_resource type="Texture2D" uid="uid://8t80tljexb38" path="res://assets/sprites/objects/bed.png" id="1_veiaa"]
+[ext_resource type="Texture2D" uid="uid://dywyng3t36uma" path="res://assets/sprites/objects/toilet.png" id="2_xgmm4"]
+[ext_resource type="Texture2D" uid="uid://bylbpk6pefb7a" path="res://assets/sprites/objects/mirror.png" id="3_3igfk"]
+[ext_resource type="Script" path="res://levels/prison/cell/mirror.gd" id="3_tx7mn"]
+[ext_resource type="Texture2D" uid="uid://hxwiovmc7c4t" path="res://assets/sprites/you/prisoner-idle-mirror.png" id="5_u06rf"]
+[ext_resource type="Texture2D" uid="uid://broyylm6li03x" path="res://assets/sprites/you/prisoner-walk-mirror.png" id="6_ciwtk"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_amqjv"]
+size = Vector2(245.217, 111.304)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_bd068"]
+size = Vector2(66.9201, 211.407)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qi76i"]
+atlas = ExtResource("5_u06rf")
+region = Rect2(0, 0, 64, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_sh51t"]
+atlas = ExtResource("5_u06rf")
+region = Rect2(64, 0, 64, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ynrf7"]
+atlas = ExtResource("5_u06rf")
+region = Rect2(128, 0, 64, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_u5tb5"]
+atlas = ExtResource("5_u06rf")
+region = Rect2(192, 0, 64, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_bdbl5"]
+atlas = ExtResource("6_ciwtk")
+region = Rect2(0, 0, 64, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_gbexr"]
+atlas = ExtResource("6_ciwtk")
+region = Rect2(64, 0, 64, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0kinl"]
+atlas = ExtResource("6_ciwtk")
+region = Rect2(128, 0, 64, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_uqpxm"]
+atlas = ExtResource("6_ciwtk")
+region = Rect2(192, 0, 64, 128)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_1o7ww"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_qi76i")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_sh51t")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ynrf7")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_u5tb5")
+}],
+"loop": true,
+"name": &"mirror-idle",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_bdbl5")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_gbexr")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_0kinl")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_uqpxm")
+}],
+"loop": true,
+"name": &"mirror-walk",
+"speed": 5.0
+}]
 
 [node name="RoomCell" type="Node2D"]
+position = Vector2(282, 160)
+
+[node name="Bed" type="StaticBody2D" parent="."]
+position = Vector2(83, 181)
+scale = Vector2(1.15, 1.15)
+metadata/_edit_group_ = true
+
+[node name="Sprite2D" type="Sprite2D" parent="Bed"]
+scale = Vector2(2.01, 2.01)
+texture = ExtResource("1_veiaa")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Bed"]
+position = Vector2(-0.869568, 8.69565)
+shape = SubResource("RectangleShape2D_amqjv")
+
+[node name="Toilet" type="StaticBody2D" parent="."]
+position = Vector2(646, 145)
+metadata/_edit_group_ = true
+
+[node name="Sprite2D" type="Sprite2D" parent="Toilet"]
+texture = ExtResource("2_xgmm4")
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Toilet"]
+polygon = PackedVector2Array(64, -80, 64, 170, 14, 170, 14, 113, -46, 113, -45, -80)
+
+[node name="Mirror" type="Area2D" parent="."]
+position = Vector2(456, 36)
+scale = Vector2(1.315, 1.315)
+script = ExtResource("3_tx7mn")
+metadata/_edit_group_ = true
+
+[node name="Sprite2D" type="Sprite2D" parent="Mirror"]
+texture = ExtResource("3_3igfk")
+
+[node name="MirrorView" type="CollisionShape2D" parent="Mirror"]
+position = Vector2(-22.8137, 22.0532)
+scale = Vector2(1, 1)
+shape = SubResource("RectangleShape2D_bd068")
+
+[node name="MirrorBoxArea2D" type="Area2D" parent="Mirror"]
+light_mask = 34
+visibility_layer = 32
+
+[node name="MirrorBox2D" type="CollisionShape2D" parent="Mirror/MirrorBoxArea2D"]
+light_mask = 32
+visibility_layer = 32
+scale = Vector2(1, 1)
+shape = SubResource("RectangleShape2D_bd068")
+
+[node name="MirrorPlayerSprite" type="AnimatedSprite2D" parent="Mirror"]
+light_mask = 32
+visibility_layer = 32
+scale = Vector2(1.175, 1.175)
+sprite_frames = SubResource("SpriteFrames_1o7ww")
+animation = &"mirror-walk"

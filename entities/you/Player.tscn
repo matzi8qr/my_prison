@@ -1,10 +1,8 @@
-[gd_scene load_steps=14 format=3 uid="uid://cybpi0ewlyngt"]
+[gd_scene load_steps=15 format=3 uid="uid://cybpi0ewlyngt"]
 
 [ext_resource type="Texture2D" uid="uid://c11ugnh4umyi2" path="res://assets/sprites/you/prisoner-idle.png" id="1_20mj2"]
 [ext_resource type="Script" path="res://entities/you/player.gd" id="1_ogj8m"]
 [ext_resource type="Texture2D" uid="uid://8grg1qsq7d4e" path="res://assets/sprites/you/prisoner-walk.png" id="3_ouqyk"]
-
-[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_5jahs"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_tows6"]
 atlas = ExtResource("1_20mj2")
@@ -75,19 +73,36 @@ animations = [{
 "speed": 5.0
 }]
 
-[node name="Player" type="Area2D"]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_jhokt"]
+size = Vector2(54, 8)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_4gtxe"]
+size = Vector2(50, 101)
+
+[node name="Player" type="CharacterBody2D"]
+light_mask = 3
 script = ExtResource("1_ogj8m")
 speed = 170
 metadata/_edit_group_ = true
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-scale = Vector2(2.855, 3.982)
-shape = SubResource("CapsuleShape2D_5jahs")
-
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_lci8r")
 animation = &"walk"
-frame_progress = 0.213432
+frame_progress = 0.986134
 speed_scale = 0.66
 
-[connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[node name="CollisionBox" type="CollisionShape2D" parent="."]
+position = Vector2(9.23872e-07, 55.165)
+scale = Vector2(1, 1)
+shape = SubResource("RectangleShape2D_jhokt")
+
+[node name="Area2D" type="Area2D" parent="."]
+show_behind_parent = true
+light_mask = 3
+visibility_layer = 2
+
+[node name="InteractionBox" type="CollisionShape2D" parent="Area2D"]
+light_mask = 3
+visibility_layer = 2
+position = Vector2(0, -0.5)
+shape = SubResource("RectangleShape2D_4gtxe")
