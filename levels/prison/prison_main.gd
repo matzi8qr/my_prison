@@ -11,6 +11,8 @@ extends Node
 @export var WALL_INSET_Y = 266;
 var WALL_INSET = Vector2(WALL_INSET_X, WALL_INSET_Y)
 
+var YOU = self.find_child("Player")
+
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	pass # Replace with function body.

@@ -13,72 +13,72 @@ size = Vector2(245.217, 111.304)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_bd068"]
 size = Vector2(66.9201, 211.407)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_qi76i"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_aoxlf"]
 atlas = ExtResource("5_u06rf")
 region = Rect2(0, 0, 64, 128)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_sh51t"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_nom58"]
 atlas = ExtResource("5_u06rf")
 region = Rect2(64, 0, 64, 128)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_ynrf7"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_l05af"]
 atlas = ExtResource("5_u06rf")
 region = Rect2(128, 0, 64, 128)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_u5tb5"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_ajfce"]
 atlas = ExtResource("5_u06rf")
 region = Rect2(192, 0, 64, 128)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_bdbl5"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_2sf6r"]
 atlas = ExtResource("6_ciwtk")
 region = Rect2(0, 0, 64, 128)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_gbexr"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_4ukb8"]
 atlas = ExtResource("6_ciwtk")
 region = Rect2(64, 0, 64, 128)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_0kinl"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_tyfhd"]
 atlas = ExtResource("6_ciwtk")
 region = Rect2(128, 0, 64, 128)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_uqpxm"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_qej8u"]
 atlas = ExtResource("6_ciwtk")
 region = Rect2(192, 0, 64, 128)
 
-[sub_resource type="SpriteFrames" id="SpriteFrames_1o7ww"]
+[sub_resource type="SpriteFrames" id="SpriteFrames_cuuiq"]
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_qi76i")
+"texture": SubResource("AtlasTexture_aoxlf")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_sh51t")
+"texture": SubResource("AtlasTexture_nom58")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_ynrf7")
+"texture": SubResource("AtlasTexture_l05af")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_u5tb5")
+"texture": SubResource("AtlasTexture_ajfce")
 }],
 "loop": true,
-"name": &"mirror-idle",
+"name": &"idle",
 "speed": 5.0
 }, {
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_bdbl5")
+"texture": SubResource("AtlasTexture_2sf6r")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_gbexr")
+"texture": SubResource("AtlasTexture_4ukb8")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_0kinl")
+"texture": SubResource("AtlasTexture_tyfhd")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_uqpxm")
+"texture": SubResource("AtlasTexture_qej8u")
 }],
 "loop": true,
-"name": &"mirror-walk",
+"name": &"walk",
 "speed": 5.0
 }]
 
@@ -109,6 +109,8 @@ texture = ExtResource("2_xgmm4")
 polygon = PackedVector2Array(64, -80, 64, 170, 14, 170, 14, 113, -46, 113, -45, -80)
 
 [node name="Mirror" type="Area2D" parent="."]
+light_mask = 2
+visibility_layer = 2
 position = Vector2(456, 36)
 scale = Vector2(1.315, 1.315)
 script = ExtResource("3_tx7mn")
@@ -118,12 +120,14 @@ metadata/_edit_group_ = true
 texture = ExtResource("3_3igfk")
 
 [node name="MirrorView" type="CollisionShape2D" parent="Mirror"]
-position = Vector2(-22.8137, 22.0532)
+light_mask = 2
+visibility_layer = 2
+position = Vector2(-48, 48)
 scale = Vector2(1, 1)
 shape = SubResource("RectangleShape2D_bd068")
 
 [node name="MirrorBoxArea2D" type="Area2D" parent="Mirror"]
-light_mask = 34
+light_mask = 32
 visibility_layer = 32
 
 [node name="MirrorBox2D" type="CollisionShape2D" parent="Mirror/MirrorBoxArea2D"]
@@ -132,9 +136,17 @@ visibility_layer = 32
 scale = Vector2(1, 1)
 shape = SubResource("RectangleShape2D_bd068")
 
-[node name="MirrorPlayerSprite" type="AnimatedSprite2D" parent="Mirror"]
+[node name="MirrorPlayerSprite" type="AnimatedSprite2D" parent="Mirror/MirrorBoxArea2D"]
+visible = false
 light_mask = 32
 visibility_layer = 32
-scale = Vector2(1.175, 1.175)
-sprite_frames = SubResource("SpriteFrames_1o7ww")
-animation = &"mirror-walk"
+scale = Vector2(1.2, 1.2)
+sprite_frames = SubResource("SpriteFrames_cuuiq")
+animation = &"idle"
+speed_scale = 0.66
+
+[connection signal="area_entered" from="Mirror" to="Mirror" method="_on_area_entered"]
+[connection signal="area_exited" from="Mirror" to="Mirror" method="_on_area_exited"]
+[connection signal="area_shape_entered" from="Mirror" to="Mirror" method="_on_area_shape_entered"]
+[connection signal="body_entered" from="Mirror" to="Mirror" method="_on_body_entered"]
+[connection signal="body_exited" from="Mirror" to="Mirror" method="_on_body_exited"]

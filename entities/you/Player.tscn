@@ -88,7 +88,7 @@ metadata/_edit_group_ = true
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_lci8r")
 animation = &"walk"
-frame_progress = 0.986134
+frame_progress = 0.0805101
 speed_scale = 0.66
 
 [node name="CollisionBox" type="CollisionShape2D" parent="."]
@@ -96,12 +96,12 @@ position = Vector2(9.23872e-07, 55.165)
 scale = Vector2(1, 1)
 shape = SubResource("RectangleShape2D_jhokt")
 
-[node name="Area2D" type="Area2D" parent="."]
+[node name="PlayerInteractionBox" type="Area2D" parent="."]
 show_behind_parent = true
 light_mask = 3
 visibility_layer = 2
 
-[node name="InteractionBox" type="CollisionShape2D" parent="Area2D"]
+[node name="InteractionBox" type="CollisionShape2D" parent="PlayerInteractionBox"]
 light_mask = 3
 visibility_layer = 2
 position = Vector2(0, -0.5)

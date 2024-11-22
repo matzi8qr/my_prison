@@ -51,7 +51,7 @@ func _get_walk_input() -> Vector2:
 	
 
 func _move_player(delta: float, direction: Vector2) -> void:
-	velocity = direction * (speed)
+	velocity = direction * speed
 	move_and_slide()
 	
 	# check and clamp to prison walls
