@@ -1,0 +1,9 @@
+[gd_scene load_steps=2 format=3 uid="uid://cybpi0ewlyngt"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_5jahs"]
+
+[node name="Player" type="Area2D"]
+metadata/_edit_group_ = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CapsuleShape2D_5jahs")
