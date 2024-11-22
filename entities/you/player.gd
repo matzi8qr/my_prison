@@ -27,8 +27,9 @@ func _ready() -> void:
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
-	var velocity = _get_walk_input()
-	_move_player(delta, velocity)
+	if self.visible:
+		var velocity = _get_walk_input()
+		_move_player(delta, velocity)
 	
 
 
@@ -72,5 +73,5 @@ func _move_player(delta: float, direction: Vector2) -> void:
 	$AnimatedSprite2D.animation = anim
 
 
-func _on_body_entered(body: Node2D) -> void:
-	hit.emit()
+func _on_room_cell_youre_awake() -> void:
+	self.visible = true

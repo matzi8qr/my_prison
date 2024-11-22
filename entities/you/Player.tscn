@@ -88,7 +88,7 @@ metadata/_edit_group_ = true
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_lci8r")
 animation = &"walk"
-frame_progress = 0.0805101
+frame_progress = 0.0669341
 speed_scale = 0.66
 
 [node name="CollisionBox" type="CollisionShape2D" parent="."]
