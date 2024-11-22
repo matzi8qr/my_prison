@@ -1,9 +1,57 @@
-[gd_scene load_steps=2 format=3 uid="uid://cybpi0ewlyngt"]
+[gd_scene load_steps=9 format=3 uid="uid://cybpi0ewlyngt"]
+
+[ext_resource type="Texture2D" uid="uid://c11ugnh4umyi2" path="res://assets/sprites/you/prisoner-idle.png" id="1_20mj2"]
+[ext_resource type="Script" path="res://entities/you/player.gd" id="1_ogj8m"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_5jahs"]
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_7trgy"]
+atlas = ExtResource("1_20mj2")
+region = Rect2(0, 0, 32, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_jbjuk"]
+atlas = ExtResource("1_20mj2")
+region = Rect2(32, 0, 32, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_asgq8"]
+atlas = ExtResource("1_20mj2")
+region = Rect2(64, 0, 32, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_lma26"]
+atlas = ExtResource("1_20mj2")
+region = Rect2(96, 0, 32, 64)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_lci8r"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_7trgy")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_jbjuk")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_asgq8")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_lma26")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 5.0
+}]
+
 [node name="Player" type="Area2D"]
+script = ExtResource("1_ogj8m")
+speed = 170
 metadata/_edit_group_ = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+scale = Vector2(1.355, 1.89)
 shape = SubResource("CapsuleShape2D_5jahs")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_lci8r")
+animation = &"idle"
+frame_progress = 0.557837
+speed_scale = 0.44
