@@ -5,6 +5,9 @@ extends Area2D
 # tay worms
 # 
 
+# signal
+signal hit
+
 # get export variables
 @export var speed = 100
 
@@ -18,6 +21,9 @@ func _ready() -> void:
 	screen_size = get_viewport_rect().size
 	parent = self.find_parent("PrisonMain")
 	is_in_prison = parent != null
+	
+	$AnimatedSprite2D.play()
+	
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
@@ -48,7 +54,7 @@ func _move_player(delta: float, direction: Vector2) -> void:
 	var velocity = direction * (delta * speed)
 	position += velocity
 	
-	# check prison walls
+	# check and clamp to prison walls
 	var wall_inset = Vector2.ZERO
 	if is_in_prison:
 		wall_inset = parent.WALL_INSET
@@ -56,3 +62,16 @@ func _move_player(delta: float, direction: Vector2) -> void:
 	position.x = clamp(position.x, wall_inset.x, screen_size.x - wall_inset.x)	
 	position.y = clamp(position.y, wall_inset.y, screen_size.y - wall_inset.y)
 	
+	# choose anim
+	var anim = "idle"
+	if velocity.x < 0:
+		$AnimatedSprite2D.flip_h = true
+		anim = "walk"
+	elif velocity.x > 0:
+		$AnimatedSprite2D.flip_h = false
+		anim = "walk"
+	$AnimatedSprite2D.animation = anim
+
+
+func _on_body_entered(body: Node2D) -> void:
+	hit.emit()
