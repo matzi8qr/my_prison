@@ -1,0 +1,14 @@
+[gd_scene load_steps=4 format=3 uid="uid://bmk88vtqb1w61"]
+
+[ext_resource type="PackedScene" uid="uid://cybpi0ewlyngt" path="res://entities/you/Player.tscn" id="1_desnt"]
+[ext_resource type="Script" path="res://levels/prison/prison_main.gd" id="1_jgefm"]
+[ext_resource type="PackedScene" uid="uid://dy6brmn52mg0b" path="res://levels/prison/cell/room_cell.tscn" id="2_dugvu"]
+
+[node name="PrisonMain" type="Node"]
+script = ExtResource("1_jgefm")
+
+[node name="Player" parent="." instance=ExtResource("1_desnt")]
+position = Vector2(320, 418)
+scale = Vector2(2, 2)
+
+[node name="RoomCell" parent="." instance=ExtResource("2_dugvu")]

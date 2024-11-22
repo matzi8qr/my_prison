@@ -5,36 +5,36 @@
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_5jahs"]
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_7trgy"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_tows6"]
 atlas = ExtResource("1_20mj2")
-region = Rect2(0, 0, 32, 64)
+region = Rect2(0, 0, 64, 128)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_jbjuk"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_gpubx"]
 atlas = ExtResource("1_20mj2")
-region = Rect2(32, 0, 32, 64)
+region = Rect2(64, 0, 64, 128)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_asgq8"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_yyglm"]
 atlas = ExtResource("1_20mj2")
-region = Rect2(64, 0, 32, 64)
+region = Rect2(128, 0, 64, 128)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_lma26"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_x2l6q"]
 atlas = ExtResource("1_20mj2")
-region = Rect2(96, 0, 32, 64)
+region = Rect2(192, 0, 64, 128)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_lci8r"]
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_7trgy")
+"texture": SubResource("AtlasTexture_tows6")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_jbjuk")
+"texture": SubResource("AtlasTexture_gpubx")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_asgq8")
+"texture": SubResource("AtlasTexture_yyglm")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_lma26")
+"texture": SubResource("AtlasTexture_x2l6q")
 }],
 "loop": true,
 "name": &"idle",
@@ -47,11 +47,11 @@ speed = 170
 metadata/_edit_group_ = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-scale = Vector2(1.355, 1.89)
+scale = Vector2(2.855, 3.982)
 shape = SubResource("CapsuleShape2D_5jahs")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_lci8r")
 animation = &"idle"
-frame_progress = 0.557837
+frame_progress = 0.652275
 speed_scale = 0.44

@@ -9,12 +9,15 @@ extends Area2D
 @export var speed = 100
 
 # global game vars
+var parent
+var is_in_prison = false
 var screen_size
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	screen_size = get_viewport_rect().size
-
+	parent = self.find_parent("PrisonMain")
+	is_in_prison = parent != null
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
@@ -44,4 +47,12 @@ func _get_walk_input() -> Vector2:
 func _move_player(delta: float, direction: Vector2) -> void:
 	var velocity = direction * (delta * speed)
 	position += velocity
-	position.clamp(Vector2.ZERO, screen_size)
+	
+	# check prison walls
+	var wall_inset = Vector2.ZERO
+	if is_in_prison:
+		wall_inset = parent.WALL_INSET
+		print(wall_inset)
+	position.x = clamp(position.x, wall_inset.x, screen_size.x - wall_inset.x)	
+	position.y = clamp(position.y, wall_inset.y, screen_size.y - wall_inset.y)
+	
