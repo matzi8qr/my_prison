@@ -1,0 +1,44 @@
+[gd_scene load_steps=4 format=3 uid="uid://e52vtupg25n3"]
+
+[ext_resource type="Texture2D" uid="uid://cariwak3heho7" path="res://assets/sprites/objects/black-text-box.png" id="1_haych"]
+[ext_resource type="FontFile" uid="uid://colt7yts6y8nr" path="res://assets/fonts/your-thoughts.ttf" id="2_05xg6"]
+
+[sub_resource type="Theme" id="Theme_433rk"]
+
+[node name="Textbox" type="MarginContainer"]
+visibility_layer = 16
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -233.0
+offset_right = 3.0
+grow_horizontal = 2
+grow_vertical = 0
+theme = SubResource("Theme_433rk")
+theme_override_constants/margin_left = 16
+theme_override_constants/margin_right = 16
+theme_override_constants/margin_bottom = 21
+
+[node name="TextureRect" type="TextureRect" parent="."]
+layout_mode = 2
+texture = ExtResource("1_haych")
+expand_mode = 1
+
+[node name="TextSubContainer" type="MarginContainer" parent="."]
+layout_mode = 2
+theme_override_constants/margin_left = 84
+theme_override_constants/margin_top = 60
+theme_override_constants/margin_right = 84
+theme_override_constants/margin_bottom = 53
+
+[node name="Panel" type="Panel" parent="TextSubContainer"]
+visible = false
+layout_mode = 2
+
+[node name="RichTextLabel" type="RichTextLabel" parent="TextSubContainer"]
+layout_mode = 2
+theme_override_fonts/normal_font = ExtResource("2_05xg6")
+theme_override_font_sizes/normal_font_size = 53
+bbcode_enabled = true
+text = "[color=AFAF9E]After everything, it's still [shake rate=20.0 level=5]you[/shake]. I wrote a song for you, and it was called[/color] [color=DBB614][wave amp=25.0 freq=5.0]\"Yellow\"[/wave][/color]"
