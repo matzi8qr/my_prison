@@ -21,7 +21,7 @@ func _ready() -> void:
 	is_in_prison = root != null
 	
 	mirror_box = $MirrorBoxArea2D
-	your_mirror = $MirrorBoxArea2D/MirrorPlayerSprite
+	your_mirror = $MirrorMaskSprite/MirrorPlayerSprite
 	
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.

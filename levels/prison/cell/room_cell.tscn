@@ -1,4 +1,4 @@
-[gd_scene load_steps=38 format=3 uid="uid://dy6brmn52mg0b"]
+[gd_scene load_steps=41 format=3 uid="uid://dy6brmn52mg0b"]
 
 [ext_resource type="Script" path="res://levels/prison/cell/room_cell.gd" id="1_44s86"]
 [ext_resource type="Texture2D" uid="uid://8t80tljexb38" path="res://assets/sprites/objects/bed.png" id="1_veiaa"]
@@ -9,6 +9,8 @@
 [ext_resource type="Texture2D" uid="uid://bc5qvb4nkydu7" path="res://assets/sprites/you/getting_out_of_bed.png" id="4_0vxv5"]
 [ext_resource type="Texture2D" uid="uid://hxwiovmc7c4t" path="res://assets/sprites/you/prisoner-idle-mirror.png" id="5_u06rf"]
 [ext_resource type="Texture2D" uid="uid://broyylm6li03x" path="res://assets/sprites/you/prisoner-walk-mirror.png" id="6_ciwtk"]
+[ext_resource type="Texture2D" uid="uid://rrj7afxe6htg" path="res://assets/sprites/objects/mirror_mask.png" id="10_q1fd4"]
+[ext_resource type="Texture2D" uid="uid://byi2xsvt3xsfs" path="res://assets/sprites/objects/eye-light-0.png" id="11_dl76i"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_amqjv"]
 size = Vector2(245.217, 111.304)
@@ -159,6 +161,9 @@ animations = [{
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_bd068"]
 size = Vector2(66.9201, 211.407)
 
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_5mopw"]
+light_mode = 2
+
 [sub_resource type="AtlasTexture" id="AtlasTexture_aoxlf"]
 atlas = ExtResource("5_u06rf")
 region = Rect2(0, 0, 64, 128)
@@ -235,6 +240,7 @@ script = ExtResource("1_44s86")
 [node name="Bed" type="StaticBody2D" parent="."]
 position = Vector2(83, 181)
 scale = Vector2(1.15, 1.15)
+metadata/_edit_group_ = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Bed"]
 position = Vector2(-0.869568, 8.69565)
@@ -257,41 +263,66 @@ texture = ExtResource("2_xgmm4")
 polygon = PackedVector2Array(64, -80, 64, 170, 14, 170, 14, 113, -46, 113, -45, -80)
 
 [node name="Mirror" type="Area2D" parent="."]
-light_mask = 2
-visibility_layer = 2
+light_mask = 1024
+visibility_layer = 1024
 position = Vector2(456, 36)
 scale = Vector2(1.315, 1.315)
 script = ExtResource("3_tx7mn")
 metadata/_edit_group_ = true
 
-[node name="Sprite2D" type="Sprite2D" parent="Mirror"]
+[node name="MirrorSprite" type="Sprite2D" parent="Mirror"]
+light_mask = 1024
+visibility_layer = 1024
+z_index = -4
 texture = ExtResource("3_3igfk")
 
 [node name="MirrorView" type="CollisionShape2D" parent="Mirror"]
 light_mask = 2
 visibility_layer = 2
 position = Vector2(-48, 48)
-scale = Vector2(1, 1)
 shape = SubResource("RectangleShape2D_bd068")
 
-[node name="MirrorBoxArea2D" type="Area2D" parent="Mirror"]
-light_mask = 32
-visibility_layer = 32
+[node name="MirrorMask" type="PointLight2D" parent="Mirror"]
+light_mask = 1024
+visibility_layer = 1024
+energy = 1.38
+blend_mode = 2
+range_item_cull_mask = 1024
+texture = ExtResource("10_q1fd4")
 
-[node name="MirrorBox2D" type="CollisionShape2D" parent="Mirror/MirrorBoxArea2D"]
-light_mask = 32
-visibility_layer = 32
-scale = Vector2(1, 1)
-shape = SubResource("RectangleShape2D_bd068")
+[node name="MirrorMaskSprite" type="Sprite2D" parent="Mirror"]
+clip_children = 1
+light_mask = 1024
+visibility_layer = 1024
+texture = ExtResource("10_q1fd4")
 
-[node name="MirrorPlayerSprite" type="AnimatedSprite2D" parent="Mirror/MirrorBoxArea2D"]
-visible = false
-light_mask = 32
-visibility_layer = 32
+[node name="MirrorPlayerSprite" type="AnimatedSprite2D" parent="Mirror/MirrorMaskSprite"]
+light_mask = 1024
+visibility_layer = 1024
+material = SubResource("CanvasItemMaterial_5mopw")
+position = Vector2(-20.5323, 34.981)
 scale = Vector2(1.2, 1.2)
 sprite_frames = SubResource("SpriteFrames_cuuiq")
 animation = &"idle"
 speed_scale = 0.66
+
+[node name="EyeLight" type="Node2D" parent="."]
+z_index = 1
+position = Vector2(292, -95)
+metadata/_edit_group_ = true
+
+[node name="Sprite2D" type="Sprite2D" parent="EyeLight"]
+texture = ExtResource("11_dl76i")
+hframes = 4
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="EyeLight"]
+
+[node name="DirectionalLight2D" type="DirectionalLight2D" parent="EyeLight"]
+position = Vector2(-2, 37)
+color = Color(0.858824, 0.713726, 0.0784314, 1)
+energy = 0.33
+blend_mode = 2
+range_z_min = 0
 
 [connection signal="animation_finished" from="Bed/AnimatedSprite2D" to="." method="_on_animated_sprite_2d_animation_finished"]
 [connection signal="area_entered" from="Mirror" to="Mirror" method="_on_area_entered"]
