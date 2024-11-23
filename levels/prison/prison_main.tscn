@@ -1,11 +1,40 @@
-[gd_scene load_steps=4 format=3 uid="uid://bmk88vtqb1w61"]
+[gd_scene load_steps=8 format=3 uid="uid://bmk88vtqb1w61"]
 
 [ext_resource type="PackedScene" uid="uid://cybpi0ewlyngt" path="res://entities/you/Player.tscn" id="1_desnt"]
 [ext_resource type="Script" path="res://levels/prison/prison_main.gd" id="1_jgefm"]
 [ext_resource type="PackedScene" uid="uid://dy6brmn52mg0b" path="res://levels/prison/cell/room_cell.tscn" id="2_dugvu"]
+[ext_resource type="Shader" path="res://levels/prison/vignette.gdshader" id="6_qeorp"]
+[ext_resource type="Texture2D" uid="uid://dhvm8lgmyort8" path="res://assets/sprites/objects/fog-mask-eye.png" id="7_qjdki"]
+
+[sub_resource type="Environment" id="Environment_ngtmt"]
+background_mode = 3
+fog_light_color = Color(0.371396, 0.377392, 0.358359, 1)
+fog_density = 0.0
+fog_sky_affect = 0.0
+volumetric_fog_albedo = Color(0.739452, 0.749282, 0.579624, 1)
+volumetric_fog_emission = Color(0.0643462, 0.0641656, 0.0152385, 1)
+volumetric_fog_emission_energy = 0.0
+adjustment_enabled = true
+adjustment_brightness = 0.95
+adjustment_contrast = 1.15
+adjustment_saturation = 0.9
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_o14cd"]
+shader = ExtResource("6_qeorp")
+shader_parameter/color = Color(0.0509804, 0.0470588, 0, 1)
+shader_parameter/OCTAVES = 55
+shader_parameter/enable_pixelation = true
+shader_parameter/pixelation_amount = 100
+shader_parameter/fog_direction = Vector2(0.2, 0.5)
+shader_parameter/scroll_noise_tex = false
+shader_parameter/noise_scroll_direction = Vector2(-0.2, 0.7)
+shader_parameter/fog_mask = ExtResource("7_qjdki")
 
 [node name="PrisonMain" type="Node"]
 script = ExtResource("1_jgefm")
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_ngtmt")
 
 [node name="Player" parent="." instance=ExtResource("1_desnt")]
 visible = false
@@ -16,6 +45,28 @@ collision_layer = 3
 collision_mask = 3
 
 [node name="RoomCell" parent="." instance=ExtResource("2_dugvu")]
+light_mask = 3
 metadata/_edit_group_ = true
+
+[node name="tempTimerText" type="RichTextLabel" parent="."]
+anchors_preset = -1
+anchor_left = 0.017
+anchor_top = 0.031
+anchor_right = 0.323
+anchor_bottom = 0.062
+offset_left = 4.416
+offset_top = -10.088
+offset_right = -3.09601
+offset_bottom = 9.824
+
+[node name="FogVignette" type="ColorRect" parent="."]
+light_mask = 0
+visibility_layer = 2
+material = SubResource("ShaderMaterial_o14cd")
+offset_left = -16.0
+offset_top = -17.0
+offset_right = 1170.0
+offset_bottom = 666.0
+color = Color(0.077874, 0.0818367, 0.0257882, 1)
 
 [connection signal="youre_awake" from="RoomCell" to="Player" method="_on_room_cell_youre_awake"]

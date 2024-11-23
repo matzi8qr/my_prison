@@ -1,7 +1,8 @@
-[gd_scene load_steps=41 format=3 uid="uid://dy6brmn52mg0b"]
+[gd_scene load_steps=49 format=3 uid="uid://dy6brmn52mg0b"]
 
 [ext_resource type="Script" path="res://levels/prison/cell/room_cell.gd" id="1_44s86"]
 [ext_resource type="Texture2D" uid="uid://8t80tljexb38" path="res://assets/sprites/objects/bed.png" id="1_veiaa"]
+[ext_resource type="Texture2D" uid="uid://cbdrn7ly5sqsp" path="res://assets/sprites/objects/desk.png" id="2_46wyk"]
 [ext_resource type="Texture2D" uid="uid://dywyng3t36uma" path="res://assets/sprites/objects/toilet.png" id="2_xgmm4"]
 [ext_resource type="Texture2D" uid="uid://bylbpk6pefb7a" path="res://assets/sprites/objects/mirror.png" id="3_3igfk"]
 [ext_resource type="Texture2D" uid="uid://ddjksthpw7prb" path="res://assets/sprites/you/bed-sit.png" id="3_gpsul"]
@@ -11,6 +12,11 @@
 [ext_resource type="Texture2D" uid="uid://broyylm6li03x" path="res://assets/sprites/you/prisoner-walk-mirror.png" id="6_ciwtk"]
 [ext_resource type="Texture2D" uid="uid://rrj7afxe6htg" path="res://assets/sprites/objects/mirror_mask.png" id="10_q1fd4"]
 [ext_resource type="Texture2D" uid="uid://byi2xsvt3xsfs" path="res://assets/sprites/objects/eye-light-0.png" id="11_dl76i"]
+[ext_resource type="Script" path="res://levels/prison/cell/eye_light.gd" id="11_m80rx"]
+[ext_resource type="Texture2D" uid="uid://bj17632m1ggmw" path="res://assets/sprites/objects/foggy_light_cloud.png" id="13_yfdsk"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_3sl3p"]
+size = Vector2(123, 79)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_amqjv"]
 size = Vector2(245.217, 111.304)
@@ -233,9 +239,92 @@ animations = [{
 "speed": 5.0
 }]
 
+[sub_resource type="Animation" id="Animation_ipukc"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+
+[sub_resource type="Animation" id="Animation_q6frh"]
+resource_name = "passive_blinks"
+length = 4.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1, 3.13333),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [0, 1, 2]
+}
+
+[sub_resource type="Animation" id="Animation_683l4"]
+resource_name = "passive_blink"
+length = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.0997149),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [3, 0]
+}
+tracks/1/type = "method"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.1),
+"transitions": PackedFloat32Array(1, 1),
+"values": [{
+"args": [],
+"method": &"eye_closed"
+}, {
+"args": [],
+"method": &"eye_open"
+}]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_xyhrd"]
+_data = {
+"RESET": SubResource("Animation_ipukc"),
+"passive-shifty": SubResource("Animation_q6frh"),
+"passive_blink": SubResource("Animation_683l4")
+}
+
 [node name="RoomCell" type="Node2D"]
 position = Vector2(282, 160)
 script = ExtResource("1_44s86")
+
+[node name="Desk" type="StaticBody2D" parent="."]
+position = Vector2(318, 128)
+scale = Vector2(1.495, 1.495)
+metadata/_edit_group_ = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Desk"]
+position = Vector2(-0.5, 19.5)
+shape = SubResource("RectangleShape2D_3sl3p")
+
+[node name="Sprite2D" type="Sprite2D" parent="Desk"]
+texture = ExtResource("2_46wyk")
 
 [node name="Bed" type="StaticBody2D" parent="."]
 position = Vector2(83, 181)
@@ -265,7 +354,7 @@ polygon = PackedVector2Array(64, -80, 64, 170, 14, 170, 14, 113, -46, 113, -45, 
 [node name="Mirror" type="Area2D" parent="."]
 light_mask = 1024
 visibility_layer = 1024
-position = Vector2(456, 36)
+position = Vector2(472, 25)
 scale = Vector2(1.315, 1.315)
 script = ExtResource("3_tx7mn")
 metadata/_edit_group_ = true
@@ -283,7 +372,7 @@ position = Vector2(-48, 48)
 shape = SubResource("RectangleShape2D_bd068")
 
 [node name="MirrorMask" type="PointLight2D" parent="Mirror"]
-light_mask = 1024
+light_mask = 0
 visibility_layer = 1024
 energy = 1.38
 blend_mode = 2
@@ -297,6 +386,7 @@ visibility_layer = 1024
 texture = ExtResource("10_q1fd4")
 
 [node name="MirrorPlayerSprite" type="AnimatedSprite2D" parent="Mirror/MirrorMaskSprite"]
+visible = false
 light_mask = 1024
 visibility_layer = 1024
 material = SubResource("CanvasItemMaterial_5mopw")
@@ -307,22 +397,41 @@ animation = &"idle"
 speed_scale = 0.66
 
 [node name="EyeLight" type="Node2D" parent="."]
+light_mask = 0
+visibility_layer = 2
 z_index = 1
 position = Vector2(292, -95)
-metadata/_edit_group_ = true
+script = ExtResource("11_m80rx")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="EyeLight"]
+libraries = {
+"": SubResource("AnimationLibrary_xyhrd")
+}
 
 [node name="Sprite2D" type="Sprite2D" parent="EyeLight"]
+light_mask = 2
 texture = ExtResource("11_dl76i")
 hframes = 4
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="EyeLight"]
-
 [node name="DirectionalLight2D" type="DirectionalLight2D" parent="EyeLight"]
+light_mask = 0
+visibility_layer = 2
 position = Vector2(-2, 37)
 color = Color(0.858824, 0.713726, 0.0784314, 1)
 energy = 0.33
 blend_mode = 2
 range_z_min = 0
+range_item_cull_mask = 3
+
+[node name="PointLight2D" type="PointLight2D" parent="EyeLight"]
+light_mask = 0
+visibility_layer = 0
+position = Vector2(-5.49998, 229)
+scale = Vector2(1.93359, 1.54688)
+color = Color(0.858824, 0.74902, 0.258824, 1)
+energy = 3.5
+range_item_cull_mask = 3
+texture = ExtResource("13_yfdsk")
 
 [connection signal="animation_finished" from="Bed/AnimatedSprite2D" to="." method="_on_animated_sprite_2d_animation_finished"]
 [connection signal="area_entered" from="Mirror" to="Mirror" method="_on_area_entered"]

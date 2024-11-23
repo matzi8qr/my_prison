@@ -60,7 +60,7 @@ func _move_player(delta: float, direction: Vector2) -> void:
 	if is_in_prison:
 		wall_inset = parent.WALL_INSET
 	position.x = clamp(position.x, wall_inset.x, screen_size.x - wall_inset.x)	
-	position.y = clamp(position.y, wall_inset.y, screen_size.y - wall_inset.y)
+	position.y = clamp(position.y, wall_inset.y, screen_size.y - wall_inset.y*.7)
 	
 	# choose anim
 	var anim = "idle"
