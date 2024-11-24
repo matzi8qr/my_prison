@@ -7,8 +7,9 @@ extends Node
 # 
 
 # important globals
-var YOU
-var ROOM_CELL
+@onready var YOU = $Player
+@onready var ROOM_CELL = $RoomCell
+@onready var TEXT_MANAGER = $TextManager
 
 # flag table?
 
@@ -24,42 +25,25 @@ var timer_stopwatch = 0  # count up is easier tbh
 var time_stop = true
 var time_speed = 10  # tasks like gaming make time go faster
 
-var starting_min
-var starting_hour
+var starting_min = randi_range(0, 60)
+var starting_hour = 9 + (today)**2 + randi_range(-1, 2)
 
 # Called when the node enters the scene tree for the first time.
 # should be happening on day start
-func _ready() -> void:
-	YOU = $Player
-	ROOM_CELL = $RoomCell
-	
+func _ready() -> void:	
 	# getting out of bed is sometimes the hardest part
 	ROOM_CELL.wake_up_player()
 	
-	# seed random start times
-	starting_min = randi_range(0, 60)
-	starting_hour = 9 + (today)**2 + randi_range(-1, 2)
 	# start timer
 	timer_stopwatch = 0;
 	time_stop = false;
 	
-	# draw smoky vignette
-	# draw_walls()
-
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
 	_increment_timer(delta)
 	
-	
-func draw_walls() -> void:
-	# use CanvasItem.queue_redraw()
-	# interacts w canvas group
-	# include the bars in this
-	# use particles and another smoky glow effect?
-	$WallCanvasGroup.queue_redraw()
-	
-	
+
 func _increment_timer(delta: float) -> void:
 	if time_stop:
 		return

@@ -42,3 +42,5 @@ theme_override_fonts/normal_font = ExtResource("2_05xg6")
 theme_override_font_sizes/normal_font_size = 53
 bbcode_enabled = true
 text = "[color=AFAF9E]After everything, it's still [shake rate=20.0 level=5]you[/shake]. I wrote a song for you, and it was called[/color] [color=DBB614][wave amp=25.0 freq=5.0]\"Yellow\"[/wave][/color]"
+visible_characters = 0
+visible_ratio = 0.0
