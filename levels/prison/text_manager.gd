@@ -4,7 +4,7 @@ extends CanvasLayer
 # this script manages the text box
 #
 
-var CHAR_READ_RATE = 0.05
+var CHAR_READ_RATE = 0.02
 
 @onready var root = get_parent()
 

@@ -1,0 +1,448 @@
+[gd_scene load_steps=38 format=4 uid="uid://vy4meor2dwon"]
+
+[ext_resource type="Texture2D" uid="uid://dd886yyfnxn4i" path="res://assets/sprites/ninja/japanese_roof.png" id="1_5lg24"]
+[ext_resource type="Texture2D" uid="uid://15whdy6465um" path="res://assets/sprites/ninja/tiny_night.png" id="1_6sh3e"]
+[ext_resource type="Script" path="res://levels/ui/phone/ninja_cat.gd" id="1_l85ti"]
+[ext_resource type="Texture2D" uid="uid://xxgy0qxuu4av" path="res://assets/sprites/ninja/ninja_dash.png" id="1_sr603"]
+[ext_resource type="Script" path="res://levels/ui/phone/map_scroller.gd" id="2_3m1da"]
+[ext_resource type="Texture2D" uid="uid://creq6w2sin84n" path="res://assets/sprites/ninja/ninja_run.png" id="2_fo8ux"]
+[ext_resource type="FontFile" uid="uid://dxldtbcnfoyby" path="res://assets/fonts/tinyfont.ttf" id="4_lpuwv"]
+[ext_resource type="Script" path="res://levels/ui/phone/shuriken.gd" id="5_jvwgp"]
+[ext_resource type="Texture2D" uid="uid://l6n1smyx7kvh" path="res://assets/sprites/ninja/shuriken.png" id="5_lja20"]
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_f62pi"]
+texture = ExtResource("1_5lg24")
+texture_region_size = Vector2i(24, 24)
+0:0/0 = 0
+0:0/0/terrain_set = 0
+0:0/0/terrain = 0
+0:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-6, 0, 12, 0, 12, 12, -6, 12)
+0:0/0/physics_layer_0/polygon_0/one_way = true
+0:0/0/terrains_peering_bit/right_side = 0
+0:0/0/terrains_peering_bit/bottom_right_corner = 0
+0:0/0/terrains_peering_bit/bottom_side = 0
+1:0/next_alternative_id = 4
+1:0/0 = 0
+1:0/0/terrain_set = 0
+1:0/0/terrain = 0
+1:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-12, 0, 12, 0, 12, 12, -12, 12, -12, 0)
+1:0/0/physics_layer_0/polygon_0/one_way = true
+1:0/0/terrains_peering_bit/right_side = 0
+1:0/0/terrains_peering_bit/bottom_right_corner = 0
+1:0/0/terrains_peering_bit/bottom_side = 0
+1:0/0/terrains_peering_bit/bottom_left_corner = 0
+1:0/0/terrains_peering_bit/left_side = 0
+3:0/0 = 0
+3:0/0/terrain_set = 0
+3:0/0/terrain = 0
+3:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-12, 0, 6, 0, 6, 12, -12, 12)
+3:0/0/physics_layer_0/polygon_0/one_way = true
+3:0/0/terrains_peering_bit/bottom_side = 0
+3:0/0/terrains_peering_bit/bottom_left_corner = 0
+3:0/0/terrains_peering_bit/left_side = 0
+0:1/0 = 0
+0:1/0/terrain_set = 0
+0:1/0/terrain = 0
+0:1/0/terrains_peering_bit/right_side = 0
+0:1/0/terrains_peering_bit/bottom_right_corner = 0
+0:1/0/terrains_peering_bit/bottom_side = 0
+0:1/0/terrains_peering_bit/top_side = 0
+0:1/0/terrains_peering_bit/top_right_corner = 0
+1:1/0 = 0
+1:1/0/terrain_set = 0
+1:1/0/terrain = 0
+1:1/0/terrains_peering_bit/right_side = 0
+1:1/0/terrains_peering_bit/bottom_right_corner = 0
+1:1/0/terrains_peering_bit/bottom_side = 0
+1:1/0/terrains_peering_bit/bottom_left_corner = 0
+1:1/0/terrains_peering_bit/left_side = 0
+1:1/0/terrains_peering_bit/top_left_corner = 0
+1:1/0/terrains_peering_bit/top_side = 0
+1:1/0/terrains_peering_bit/top_right_corner = 0
+3:1/0 = 0
+3:1/0/terrain_set = 0
+3:1/0/terrain = 0
+3:1/0/terrains_peering_bit/bottom_side = 0
+3:1/0/terrains_peering_bit/bottom_left_corner = 0
+3:1/0/terrains_peering_bit/left_side = 0
+3:1/0/terrains_peering_bit/top_left_corner = 0
+3:1/0/terrains_peering_bit/top_side = 0
+2:1/next_alternative_id = 2
+2:1/0 = 0
+2:1/0/terrain_set = 0
+2:1/0/terrain = 0
+2:1/0/terrains_peering_bit/right_side = 0
+2:1/0/terrains_peering_bit/bottom_right_corner = 0
+2:1/0/terrains_peering_bit/bottom_side = 0
+2:1/0/terrains_peering_bit/bottom_left_corner = 0
+2:1/0/terrains_peering_bit/left_side = 0
+2:1/0/terrains_peering_bit/top_left_corner = 0
+2:1/0/terrains_peering_bit/top_side = 0
+2:1/0/terrains_peering_bit/top_right_corner = 0
+2:0/next_alternative_id = 2
+2:0/0 = 0
+2:0/0/terrain_set = 0
+2:0/0/terrain = 0
+2:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-12, 0, 12, 0, 12, 12, -12, 12, -12, 0)
+2:0/0/physics_layer_0/polygon_0/one_way = true
+2:0/0/terrains_peering_bit/right_side = 0
+2:0/0/terrains_peering_bit/bottom_right_corner = 0
+2:0/0/terrains_peering_bit/bottom_side = 0
+2:0/0/terrains_peering_bit/bottom_left_corner = 0
+2:0/0/terrains_peering_bit/left_side = 0
+
+[sub_resource type="TileSet" id="TileSet_b1s4r"]
+tile_size = Vector2i(24, 24)
+physics_layer_0/collision_layer = 1
+terrain_set_0/mode = 0
+terrain_set_0/terrain_0/name = "buildingfix"
+terrain_set_0/terrain_0/color = Color(0.172697, 0.172174, 0.135661, 1)
+sources/0 = SubResource("TileSetAtlasSource_f62pi")
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_odspf"]
+atlas = ExtResource("5_lja20")
+region = Rect2(0, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_oc6i6"]
+atlas = ExtResource("5_lja20")
+region = Rect2(64, 0, 64, 64)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_pakyg"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_odspf")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_oc6i6")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_6dcaw"]
+radius = 33.0
+height = 66.0
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ars5u"]
+atlas = ExtResource("1_sr603")
+region = Rect2(0, 0, 96, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_lnyii"]
+atlas = ExtResource("1_sr603")
+region = Rect2(96, 0, 96, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_cnkyn"]
+atlas = ExtResource("1_sr603")
+region = Rect2(192, 0, 96, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fooxv"]
+atlas = ExtResource("1_sr603")
+region = Rect2(288, 0, 96, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_jpmin"]
+atlas = ExtResource("1_sr603")
+region = Rect2(384, 0, 96, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4n1w8"]
+atlas = ExtResource("1_sr603")
+region = Rect2(480, 0, 96, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_7bxlv"]
+atlas = ExtResource("1_sr603")
+region = Rect2(576, 0, 96, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_u3u51"]
+atlas = ExtResource("1_sr603")
+region = Rect2(672, 0, 96, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6rgx5"]
+atlas = ExtResource("2_fo8ux")
+region = Rect2(128, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_83x0o"]
+atlas = ExtResource("2_fo8ux")
+region = Rect2(64, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_7h547"]
+atlas = ExtResource("2_fo8ux")
+region = Rect2(0, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_f5qbe"]
+atlas = ExtResource("2_fo8ux")
+region = Rect2(64, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_1jpcc"]
+atlas = ExtResource("2_fo8ux")
+region = Rect2(128, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_gjt3h"]
+atlas = ExtResource("2_fo8ux")
+region = Rect2(192, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_feoqt"]
+atlas = ExtResource("2_fo8ux")
+region = Rect2(0, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_tx1cc"]
+atlas = ExtResource("2_fo8ux")
+region = Rect2(64, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_wvwvw"]
+atlas = ExtResource("2_fo8ux")
+region = Rect2(128, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5e1t3"]
+atlas = ExtResource("2_fo8ux")
+region = Rect2(192, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3jxr6"]
+atlas = ExtResource("2_fo8ux")
+region = Rect2(192, 0, 64, 64)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_byil5"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ars5u")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_lnyii")
+}, {
+"duration": 0.5,
+"texture": SubResource("AtlasTexture_cnkyn")
+}, {
+"duration": 0.5,
+"texture": SubResource("AtlasTexture_fooxv")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_jpmin")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_4n1w8")
+}, {
+"duration": 0.5,
+"texture": SubResource("AtlasTexture_7bxlv")
+}, {
+"duration": 0.5,
+"texture": SubResource("AtlasTexture_u3u51")
+}],
+"loop": false,
+"name": &"dash",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_6rgx5")
+}],
+"loop": true,
+"name": &"in_air_down",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_83x0o")
+}],
+"loop": true,
+"name": &"in_air_up",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_7h547")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_f5qbe")
+}],
+"loop": false,
+"name": &"jump",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_1jpcc")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_gjt3h")
+}],
+"loop": false,
+"name": &"land",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_feoqt")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_tx1cc")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_wvwvw")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_5e1t3")
+}],
+"loop": true,
+"name": &"run",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3jxr6")
+}],
+"loop": true,
+"name": &"sit",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_r8080"]
+size = Vector2(56, 44)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_e3utl"]
+radius = 28.3745
+
+[node name="PhoneCat" type="Node2D"]
+
+[node name="Background" type="Sprite2D" parent="."]
+position = Vector2(-79, -135)
+scale = Vector2(0.575463, 0.749505)
+texture = ExtResource("1_6sh3e")
+centered = false
+
+[node name="MapScroller" type="Node2D" parent="."]
+script = ExtResource("2_3m1da")
+
+[node name="MapStart" type="TileMapLayer" parent="MapScroller"]
+position = Vector2(0, 45.915)
+scale = Vector2(3.78, 3.78)
+tile_map_data = PackedByteArray("AAAAAAUAAAABAAAAAAAAAAYAAAABAAEAAAABAAUAAAACAAAAAAABAAYAAAACAAEAAAACAAUAAAABAAAAAAACAAYAAAABAAEAAAADAAUAAAACAAAAAAADAAYAAAACAAEAAAAEAAUAAAABAAAAAAAEAAYAAAABAAEAAAAFAAUAAAACAAAAAAAFAAYAAAACAAEAAAAGAAUAAAABAAAAAAAGAAYAAAABAAEAAAAHAAUAAAACAAAAAAAHAAYAAAACAAEAAAAIAAUAAAADAAAAAAAIAAYAAAADAAEAAAALAAQAAAAAAAAAAAALAAUAAAAAAAEAAAAMAAQAAAABAAAAAAAMAAUAAAABAAEAAAANAAQAAAACAAAAAAANAAUAAAACAAEAAAAOAAQAAAADAAAAAAAOAAUAAAADAAEAAAALAAYAAAAAAAEAAAAMAAYAAAABAAEAAAANAAYAAAACAAEAAAAOAAYAAAADAAEAAAA=")
+tile_set = SubResource("TileSet_b1s4r")
+
+[node name="MapChunk0" type="TileMapLayer" parent="MapScroller"]
+position = Vector2(2000, 45.915)
+scale = Vector2(3.78, 3.78)
+tile_map_data = PackedByteArray("AAAAAAUAAAAAAAAAAAAAAAYAAAAAAAEAAAABAAUAAAACAAAAAAABAAYAAAACAAEAAAACAAUAAAABAAAAAAACAAYAAAABAAEAAAADAAUAAAACAAAAAAADAAYAAAACAAEAAAAEAAUAAAAAAAEAAAAEAAYAAAAAAAEAAAAFAAUAAAABAAEAAAAFAAYAAAABAAEAAAAGAAUAAAACAAEAAAAGAAYAAAACAAEAAAAHAAUAAAADAAEAAAAHAAYAAAADAAEAAAAEAAQAAAAAAAAAAAAFAAQAAAABAAAAAAAGAAQAAAACAAAAAAAHAAQAAAADAAAAAAAOAAQAAAAAAAAAAAAOAAUAAAAAAAEAAAAOAAYAAAAAAAEAAAAPAAQAAAABAAAAAAAPAAUAAAABAAEAAAAPAAYAAAABAAEAAAAQAAQAAAACAAAAAAAQAAUAAAACAAEAAAAQAAYAAAACAAEAAAARAAQAAAADAAAAAAARAAUAAAADAAEAAAARAAYAAAADAAEAAAA=")
+tile_set = SubResource("TileSet_b1s4r")
+
+[node name="MapChunk1" type="TileMapLayer" parent="MapScroller"]
+position = Vector2(4000, 45.915)
+scale = Vector2(3.78, 3.78)
+tile_map_data = PackedByteArray("AAAAAAUAAAAAAAAAAAAAAAYAAAAAAAEAAAABAAUAAAACAAAAAAABAAYAAAACAAEAAAACAAUAAAABAAAAAAACAAYAAAABAAEAAAADAAUAAAACAAAAAAADAAYAAAACAAEAAAAEAAYAAAADAAEAAAAOAAYAAAAAAAEAAAAPAAUAAAABAAAAAAAPAAYAAAABAAEAAAAQAAUAAAACAAAAAAAQAAYAAAACAAEAAAARAAUAAAACAAAAAAARAAYAAAACAAEAAAAEAAUAAAADAAAAAAAOAAUAAAAAAAAAAAASAAUAAAADAAAAAAASAAYAAAADAAEAAAA=")
+tile_set = SubResource("TileSet_b1s4r")
+
+[node name="RichTextLabel" type="RichTextLabel" parent="MapScroller"]
+offset_left = 99.0
+offset_top = 87.0
+offset_right = 1005.0
+offset_bottom = 356.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme_override_fonts/normal_font = ExtResource("4_lpuwv")
+theme_override_font_sizes/normal_font_size = 109
+bbcode_enabled = true
+text = "
+[wave amp=269 freq=2][color=DBB614][center]ninja cat[/center][/color][/wave]"
+
+[node name="Shuriken" type="Area2D" parent="MapScroller"]
+position = Vector2(1793, 331)
+collision_layer = 2
+collision_mask = 5
+script = ExtResource("5_jvwgp")
+metadata/_edit_group_ = true
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="MapScroller/Shuriken"]
+sprite_frames = SubResource("SpriteFrames_pakyg")
+frame_progress = 0.978933
+speed_scale = 2.0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="MapScroller/Shuriken"]
+visibility_layer = 2
+shape = SubResource("CapsuleShape2D_6dcaw")
+
+[node name="Shuriken2" type="Area2D" parent="MapScroller"]
+position = Vector2(4717, 395)
+collision_layer = 2
+collision_mask = 5
+script = ExtResource("5_jvwgp")
+metadata/_edit_group_ = true
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="MapScroller/Shuriken2"]
+sprite_frames = SubResource("SpriteFrames_pakyg")
+frame_progress = 0.978933
+speed_scale = 2.0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="MapScroller/Shuriken2"]
+visibility_layer = 2
+shape = SubResource("CapsuleShape2D_6dcaw")
+
+[node name="Shuriken3" type="Area2D" parent="MapScroller"]
+position = Vector2(5104, 294)
+collision_layer = 2
+collision_mask = 5
+script = ExtResource("5_jvwgp")
+metadata/_edit_group_ = true
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="MapScroller/Shuriken3"]
+sprite_frames = SubResource("SpriteFrames_pakyg")
+frame_progress = 0.978933
+speed_scale = 2.0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="MapScroller/Shuriken3"]
+visibility_layer = 2
+shape = SubResource("CapsuleShape2D_6dcaw")
+
+[node name="NinjaCat" type="CharacterBody2D" parent="."]
+position = Vector2(91, 436)
+scale = Vector2(2.055, 2.055)
+collision_layer = 5
+script = ExtResource("1_l85ti")
+
+[node name="NinjaSprite" type="AnimatedSprite2D" parent="NinjaCat"]
+sprite_frames = SubResource("SpriteFrames_byil5")
+animation = &"dash"
+frame = 5
+frame_progress = 0.89972
+speed_scale = 1.7
+centered = false
+
+[node name="CatCollision2D" type="CollisionShape2D" parent="NinjaCat"]
+position = Vector2(33, 31)
+shape = SubResource("RectangleShape2D_r8080")
+
+[node name="SwordHitbox" type="Area2D" parent="NinjaCat"]
+collision_layer = 4
+collision_mask = 2
+
+[node name="SwordCapsule2D" type="CollisionShape2D" parent="NinjaCat/SwordHitbox"]
+position = Vector2(62.2871, 36.983)
+shape = SubResource("CircleShape2D_e3utl")
+disabled = true
+
+[connection signal="visibility_changed" from="." to="MapScroller" method="_on_phone_cat_visibility_changed"]
+[connection signal="pause" from="MapScroller" to="NinjaCat" method="_on_map_scroller_pause"]
+[connection signal="unpause" from="MapScroller" to="NinjaCat" method="_on_map_scroller_unpause"]
+[connection signal="area_entered" from="MapScroller/Shuriken" to="MapScroller/Shuriken" method="_on_area_entered"]
+[connection signal="body_entered" from="MapScroller/Shuriken" to="MapScroller/Shuriken" method="_on_body_entered"]
+[connection signal="deflect" from="MapScroller/Shuriken" to="NinjaCat" method="_on_deflect"]
+[connection signal="you_lose" from="MapScroller/Shuriken" to="MapScroller" method="_on_you_lose"]
+[connection signal="you_lose" from="MapScroller/Shuriken" to="NinjaCat" method="_on_you_lose"]
+[connection signal="area_entered" from="MapScroller/Shuriken2" to="MapScroller/Shuriken2" method="_on_area_entered"]
+[connection signal="body_entered" from="MapScroller/Shuriken2" to="MapScroller/Shuriken2" method="_on_body_entered"]
+[connection signal="deflect" from="MapScroller/Shuriken2" to="NinjaCat" method="_on_deflect"]
+[connection signal="you_lose" from="MapScroller/Shuriken2" to="MapScroller" method="_on_you_lose"]
+[connection signal="you_lose" from="MapScroller/Shuriken2" to="NinjaCat" method="_on_you_lose"]
+[connection signal="area_entered" from="MapScroller/Shuriken3" to="MapScroller/Shuriken3" method="_on_area_entered"]
+[connection signal="body_entered" from="MapScroller/Shuriken3" to="MapScroller/Shuriken3" method="_on_body_entered"]
+[connection signal="deflect" from="MapScroller/Shuriken3" to="NinjaCat" method="_on_deflect"]
+[connection signal="you_lose" from="MapScroller/Shuriken3" to="MapScroller" method="_on_you_lose"]
+[connection signal="you_lose" from="MapScroller/Shuriken3" to="NinjaCat" method="_on_you_lose"]
+[connection signal="dash" from="NinjaCat" to="MapScroller" method="_on_ninja_cat_dash"]
+[connection signal="you_lose" from="NinjaCat" to="MapScroller" method="_on_you_lose"]
+[connection signal="you_lose" from="NinjaCat" to="NinjaCat" method="_on_you_lose"]
+[connection signal="animation_finished" from="NinjaCat/NinjaSprite" to="MapScroller" method="_on_ninja_sprite_animation_finished"]
+[connection signal="animation_finished" from="NinjaCat/NinjaSprite" to="NinjaCat" method="_on_ninja_sprite_animation_finished"]
+[connection signal="area_entered" from="NinjaCat/SwordHitbox" to="NinjaCat" method="_on_sword_hitbox_area_entered"]
+[connection signal="body_entered" from="NinjaCat/SwordHitbox" to="MapScroller/Shuriken" method="_on_body_entered"]
