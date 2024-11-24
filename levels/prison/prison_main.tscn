@@ -1,10 +1,11 @@
-[gd_scene load_steps=10 format=3 uid="uid://bmk88vtqb1w61"]
+[gd_scene load_steps=11 format=3 uid="uid://bmk88vtqb1w61"]
 
 [ext_resource type="PackedScene" uid="uid://cybpi0ewlyngt" path="res://entities/you/Player.tscn" id="1_desnt"]
 [ext_resource type="Script" path="res://levels/prison/prison_main.gd" id="1_jgefm"]
 [ext_resource type="PackedScene" uid="uid://dy6brmn52mg0b" path="res://levels/prison/cell/room_cell.tscn" id="2_dugvu"]
 [ext_resource type="Script" path="res://levels/prison/text_manager.gd" id="6_lvnbi"]
 [ext_resource type="PackedScene" uid="uid://e52vtupg25n3" path="res://levels/ui/textbox/Textbox.tscn" id="6_lxtdr"]
+[ext_resource type="PackedScene" uid="uid://uel0km4cx1a7" path="res://levels/ui/phone/Phone.tscn" id="6_na1ej"]
 [ext_resource type="Shader" path="res://levels/prison/vignette.gdshader" id="6_qeorp"]
 [ext_resource type="Texture2D" uid="uid://dhvm8lgmyort8" path="res://assets/sprites/objects/fog-mask-eye.png" id="7_qjdki"]
 
@@ -61,6 +62,15 @@ offset_top = -10.088
 offset_right = -3.09601
 offset_bottom = 9.824
 
+[node name="TextManager" type="CanvasLayer" parent="."]
+script = ExtResource("6_lvnbi")
+
+[node name="Textbox" parent="TextManager" instance=ExtResource("6_lxtdr")]
+visible = false
+
+[node name="Phone" parent="." instance=ExtResource("6_na1ej")]
+visible = false
+
 [node name="FogVignette" type="ColorRect" parent="."]
 light_mask = 0
 visibility_layer = 2
@@ -72,12 +82,6 @@ offset_bottom = 666.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 color = Color(0.077874, 0.0818367, 0.0257882, 1)
-
-[node name="TextManager" type="CanvasLayer" parent="."]
-script = ExtResource("6_lvnbi")
-
-[node name="Textbox" parent="TextManager" instance=ExtResource("6_lxtdr")]
-visible = false
 
 [connection signal="lock_player_input" from="." to="Player" method="_on_lock_player_input"]
 [connection signal="unlock_player_input" from="." to="Player" method="_on_unlock_player_input"]

@@ -34,9 +34,6 @@ func _process(delta: float) -> void:
 		if Input.is_action_just_pressed("interact"):
 			process_interaction()
 			
-		# phone input
-		if Input.is_action_just_pressed("open_phone"):
-			print("Open pohone if has pohone " + str(parent.FLAG_TABLE["has_phone"]))
 
 
 func _get_walk_input() -> Vector2:

@@ -15,7 +15,7 @@ signal unlock_player_input
 @onready var TEXT_MANAGER = $TextManager
 
 # flag table?
-var FLAG_TABLE = {"has_phone": false}
+var FLAG_TABLE = {"has_phone": false, "phone_open": false}
 
 # smokywall vars
 @export var WALL_INSET_X = 200;
@@ -47,13 +47,35 @@ func _ready() -> void:
 func _process(delta: float) -> void:
 	_increment_timer(delta)
 	
+	# check for phone input and toggle phone on off
+	if Input.is_action_just_pressed("open_phone") && FLAG_TABLE["has_phone"]:
+		if FLAG_TABLE["phone_open"]:
+			close_phone()
+		else:
+			open_phone()
+	
+	
+func open_phone() -> void:
+	FLAG_TABLE["phone_open"] = true
+	time_speed *= 1.5
+	$Player/AnimatedSprite2D.animation = "idle"  # upgrade to phone-idle soon!
+	lock_player_input.emit()
+	$Phone.visible = true
+	
+	
+func close_phone() -> void:
+	FLAG_TABLE["phone_open"] = false
+	time_speed *= 0.67
+	unlock_player_input.emit()
+	$Phone.visible = false;
+	
 
 func _increment_timer(delta: float) -> void:
 	if time_stop:
 		return
 		
 	timer_stopwatch += (delta * time_speed)
-	$tempTimerText.text = timer_to_clock()
+	$tempTimerText.text = timer_to_clock() + "\nSpeed: " + str(time_speed)
 	
 
 func timer_to_clock(getHourOnly = false) -> String:
