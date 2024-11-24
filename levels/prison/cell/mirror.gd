@@ -13,14 +13,12 @@ var root
 var is_in_prison = false
 var you: CharacterBody2D
 var your_mirror: AnimatedSprite2D
-var mirror_box: Area2D
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	root = self.find_parent("PrisonMain")
 	is_in_prison = root != null
 	
-	mirror_box = $MirrorBoxArea2D
 	your_mirror = $MirrorMaskSprite/MirrorPlayerSprite
 	
 

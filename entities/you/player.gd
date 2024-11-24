@@ -5,9 +5,6 @@ extends CharacterBody2D
 # tay worms
 # 
 
-# signal
-signal hit
-
 # get export variables
 @export var speed = 100
 
@@ -15,6 +12,7 @@ signal hit
 var parent
 var is_in_prison = false
 var screen_size
+var input_lock = true
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -27,11 +25,14 @@ func _ready() -> void:
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
-	if self.visible:
+	if !input_lock:
+		# player movement
 		var velocity = _get_walk_input()
 		_move_player(delta, velocity)
-	
-
+		
+		# interact input - interactable is the object clicked on, emit signal with name for obj to recieve
+		if Input.is_action_just_pressed("interact"):
+			process_interaction()
 
 
 func _get_walk_input() -> Vector2:
@@ -73,5 +74,24 @@ func _move_player(delta: float, direction: Vector2) -> void:
 	$AnimatedSprite2D.animation = anim
 
 
+func process_interaction() -> void:
+	
+	var interactables = $PlayerInteractionBox.get_overlapping_bodies()
+	if !interactables.is_empty():
+		input_lock = true
+		$AnimatedSprite2D.animation = "idle"
+		var interaction = interactables[0].interact 
+		var text_queue = interaction.call()
+		parent.TEXT_MANAGER.add_each_text(text_queue)
+
+
 func _on_room_cell_youre_awake() -> void:
-	self.visible = true
+	visible = true
+	input_lock = false
+
+
+func _on_lock_player_input() -> void:
+	input_lock = true
+
+func _on_unlock_player_input() -> void:
+	input_lock = false

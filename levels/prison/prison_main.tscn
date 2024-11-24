@@ -79,4 +79,6 @@ script = ExtResource("6_lvnbi")
 [node name="Textbox" parent="TextManager" instance=ExtResource("6_lxtdr")]
 visible = false
 
+[connection signal="lock_player_input" from="." to="Player" method="_on_lock_player_input"]
+[connection signal="unlock_player_input" from="." to="Player" method="_on_unlock_player_input"]
 [connection signal="youre_awake" from="RoomCell" to="Player" method="_on_room_cell_youre_awake"]

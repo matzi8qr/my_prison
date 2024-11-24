@@ -6,12 +6,16 @@ extends Node
 # also parents each room
 # 
 
+signal lock_player_input
+signal unlock_player_input
+
 # important globals
 @onready var YOU = $Player
 @onready var ROOM_CELL = $RoomCell
 @onready var TEXT_MANAGER = $TextManager
 
 # flag table?
+var FLAG_TABLE = {"has_phone": false}
 
 # smokywall vars
 @export var WALL_INSET_X = 200;

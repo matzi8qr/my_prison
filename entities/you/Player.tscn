@@ -77,7 +77,7 @@ animations = [{
 size = Vector2(54, 8)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_4gtxe"]
-size = Vector2(50, 101)
+size = Vector2(25, 62)
 
 [node name="Player" type="CharacterBody2D"]
 light_mask = 3
@@ -103,5 +103,5 @@ visibility_layer = 2
 [node name="InteractionBox" type="CollisionShape2D" parent="PlayerInteractionBox"]
 light_mask = 3
 visibility_layer = 2
-position = Vector2(0, -0.5)
+position = Vector2(0.5, 19)
 shape = SubResource("RectangleShape2D_4gtxe")

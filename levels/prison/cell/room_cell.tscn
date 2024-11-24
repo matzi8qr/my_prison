@@ -1,15 +1,18 @@
-[gd_scene load_steps=49 format=3 uid="uid://dy6brmn52mg0b"]
+[gd_scene load_steps=52 format=3 uid="uid://dy6brmn52mg0b"]
 
 [ext_resource type="Script" path="res://levels/prison/cell/room_cell.gd" id="1_44s86"]
 [ext_resource type="Texture2D" uid="uid://8t80tljexb38" path="res://assets/sprites/objects/bed.png" id="1_veiaa"]
 [ext_resource type="Texture2D" uid="uid://cbdrn7ly5sqsp" path="res://assets/sprites/objects/desk.png" id="2_46wyk"]
+[ext_resource type="Script" path="res://levels/prison/cell/desk.gd" id="2_rdetr"]
 [ext_resource type="Texture2D" uid="uid://dywyng3t36uma" path="res://assets/sprites/objects/toilet.png" id="2_xgmm4"]
 [ext_resource type="Texture2D" uid="uid://bylbpk6pefb7a" path="res://assets/sprites/objects/mirror.png" id="3_3igfk"]
 [ext_resource type="Texture2D" uid="uid://ddjksthpw7prb" path="res://assets/sprites/you/bed-sit.png" id="3_gpsul"]
 [ext_resource type="Script" path="res://levels/prison/cell/mirror.gd" id="3_tx7mn"]
 [ext_resource type="Texture2D" uid="uid://bc5qvb4nkydu7" path="res://assets/sprites/you/getting_out_of_bed.png" id="4_0vxv5"]
+[ext_resource type="Script" path="res://levels/prison/cell/bed.gd" id="4_45gsk"]
 [ext_resource type="Texture2D" uid="uid://hxwiovmc7c4t" path="res://assets/sprites/you/prisoner-idle-mirror.png" id="5_u06rf"]
 [ext_resource type="Texture2D" uid="uid://broyylm6li03x" path="res://assets/sprites/you/prisoner-walk-mirror.png" id="6_ciwtk"]
+[ext_resource type="Script" path="res://levels/prison/cell/toilet.gd" id="8_mmm8d"]
 [ext_resource type="Texture2D" uid="uid://rrj7afxe6htg" path="res://assets/sprites/objects/mirror_mask.png" id="10_q1fd4"]
 [ext_resource type="Texture2D" uid="uid://byi2xsvt3xsfs" path="res://assets/sprites/objects/eye-light-0.png" id="11_dl76i"]
 [ext_resource type="Script" path="res://levels/prison/cell/eye_light.gd" id="11_m80rx"]
@@ -165,7 +168,7 @@ animations = [{
 }]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_bd068"]
-size = Vector2(66.9201, 211.407)
+size = Vector2(90.5399, 211.407)
 
 [sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_5mopw"]
 light_mode = 2
@@ -254,22 +257,6 @@ tracks/0/keys = {
 "values": [0]
 }
 
-[sub_resource type="Animation" id="Animation_q6frh"]
-resource_name = "passive_blinks"
-length = 4.0
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Sprite2D:frame")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 1, 3.13333),
-"transitions": PackedFloat32Array(1, 1, 1),
-"update": 1,
-"values": [0, 1, 2]
-}
-
 [sub_resource type="Animation" id="Animation_683l4"]
 resource_name = "passive_blink"
 length = 0.1
@@ -303,11 +290,27 @@ tracks/1/keys = {
 }]
 }
 
+[sub_resource type="Animation" id="Animation_q6frh"]
+resource_name = "passive_blinks"
+length = 4.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1, 3.13333),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [0, 1, 2]
+}
+
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_xyhrd"]
 _data = {
 "RESET": SubResource("Animation_ipukc"),
-"passive-shifty": SubResource("Animation_q6frh"),
-"passive_blink": SubResource("Animation_683l4")
+"passive_blink": SubResource("Animation_683l4"),
+"passive_shifty": SubResource("Animation_q6frh")
 }
 
 [node name="RoomCell" type="Node2D"]
@@ -317,6 +320,7 @@ script = ExtResource("1_44s86")
 [node name="Desk" type="StaticBody2D" parent="."]
 position = Vector2(318, 128)
 scale = Vector2(1.495, 1.495)
+script = ExtResource("2_rdetr")
 metadata/_edit_group_ = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Desk"]
@@ -329,6 +333,7 @@ texture = ExtResource("2_46wyk")
 [node name="Bed" type="StaticBody2D" parent="."]
 position = Vector2(83, 181)
 scale = Vector2(1.15, 1.15)
+script = ExtResource("4_45gsk")
 metadata/_edit_group_ = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Bed"]
@@ -343,6 +348,7 @@ speed_scale = 0.66
 
 [node name="Toilet" type="StaticBody2D" parent="."]
 position = Vector2(646, 145)
+script = ExtResource("8_mmm8d")
 metadata/_edit_group_ = true
 
 [node name="Sprite2D" type="Sprite2D" parent="Toilet"]
@@ -359,17 +365,17 @@ scale = Vector2(1.315, 1.315)
 script = ExtResource("3_tx7mn")
 metadata/_edit_group_ = true
 
+[node name="MirrorView" type="CollisionShape2D" parent="Mirror"]
+light_mask = 2
+visibility_layer = 2
+position = Vector2(-33.8175, 48.6692)
+shape = SubResource("RectangleShape2D_bd068")
+
 [node name="MirrorSprite" type="Sprite2D" parent="Mirror"]
 light_mask = 1024
 visibility_layer = 1024
 z_index = -4
 texture = ExtResource("3_3igfk")
-
-[node name="MirrorView" type="CollisionShape2D" parent="Mirror"]
-light_mask = 2
-visibility_layer = 2
-position = Vector2(-48, 48)
-shape = SubResource("RectangleShape2D_bd068")
 
 [node name="MirrorMask" type="PointLight2D" parent="Mirror"]
 light_mask = 0
@@ -402,6 +408,7 @@ visibility_layer = 2
 z_index = 1
 position = Vector2(292, -95)
 script = ExtResource("11_m80rx")
+metadata/_edit_group_ = true
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="EyeLight"]
 libraries = {
