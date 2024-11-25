@@ -1,14 +1,16 @@
-[gd_scene load_steps=38 format=4 uid="uid://vy4meor2dwon"]
+[gd_scene load_steps=40 format=4 uid="uid://vy4meor2dwon"]
 
 [ext_resource type="Texture2D" uid="uid://dd886yyfnxn4i" path="res://assets/sprites/ninja/japanese_roof.png" id="1_5lg24"]
 [ext_resource type="Texture2D" uid="uid://15whdy6465um" path="res://assets/sprites/ninja/tiny_night.png" id="1_6sh3e"]
 [ext_resource type="Script" path="res://levels/ui/phone/ninja_cat.gd" id="1_l85ti"]
+[ext_resource type="Script" path="res://levels/ui/phone/phone_cat.gd" id="1_lc8n4"]
 [ext_resource type="Texture2D" uid="uid://xxgy0qxuu4av" path="res://assets/sprites/ninja/ninja_dash.png" id="1_sr603"]
 [ext_resource type="Script" path="res://levels/ui/phone/map_scroller.gd" id="2_3m1da"]
 [ext_resource type="Texture2D" uid="uid://creq6w2sin84n" path="res://assets/sprites/ninja/ninja_run.png" id="2_fo8ux"]
 [ext_resource type="FontFile" uid="uid://dxldtbcnfoyby" path="res://assets/fonts/tinyfont.ttf" id="4_lpuwv"]
 [ext_resource type="Script" path="res://levels/ui/phone/shuriken.gd" id="5_jvwgp"]
 [ext_resource type="Texture2D" uid="uid://l6n1smyx7kvh" path="res://assets/sprites/ninja/shuriken.png" id="5_lja20"]
+[ext_resource type="AudioStream" uid="uid://dsybam55rn0i1" path="res://assets/sounds/ninjacat.mp3" id="7_cfxqa"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_f62pi"]
 texture = ExtResource("1_5lg24")
@@ -303,6 +305,7 @@ size = Vector2(56, 44)
 radius = 28.3745
 
 [node name="PhoneCat" type="Node2D"]
+script = ExtResource("1_lc8n4")
 
 [node name="Background" type="Sprite2D" parent="."]
 position = Vector2(-79, -135)
@@ -394,6 +397,10 @@ speed_scale = 2.0
 visibility_layer = 2
 shape = SubResource("CapsuleShape2D_6dcaw")
 
+[node name="MusicPlayer" type="AudioStreamPlayer" parent="MapScroller"]
+stream = ExtResource("7_cfxqa")
+bus = &"phone"
+
 [node name="NinjaCat" type="CharacterBody2D" parent="."]
 position = Vector2(91, 436)
 scale = Vector2(2.055, 2.055)
@@ -421,6 +428,9 @@ position = Vector2(62.2871, 36.983)
 shape = SubResource("CircleShape2D_e3utl")
 disabled = true
 
+[node name="SfxPlayer" type="AudioStreamPlayer" parent="NinjaCat"]
+
+[connection signal="close_phone" from="." to="MapScroller" method="_on_phone_cat_visibility_changed"]
 [connection signal="visibility_changed" from="." to="MapScroller" method="_on_phone_cat_visibility_changed"]
 [connection signal="pause" from="MapScroller" to="NinjaCat" method="_on_map_scroller_pause"]
 [connection signal="unpause" from="MapScroller" to="NinjaCat" method="_on_map_scroller_unpause"]

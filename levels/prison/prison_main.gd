@@ -28,6 +28,7 @@ var today = 0  # day counter, useed throughout
 var timer_stopwatch = 0  # count up is easier tbh
 var time_stop = true
 var time_speed = 10  # tasks like gaming make time go faster
+var last_speed = 10
 
 var starting_min = randi_range(0, 60)
 var starting_hour = 9 + (today)**2 + randi_range(-1, 2)
@@ -41,6 +42,7 @@ func _ready() -> void:
 	# start timer
 	timer_stopwatch = 0;
 	time_stop = false;
+	
 	
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -92,3 +94,26 @@ func timer_to_clock(getHourOnly = false) -> String:
 	
 	return "%02d:%02d" % [hour, min]
 	
+
+func set_prison_world_environment() -> void:
+	var env = $WorldEnvironment.environment
+	env.glow_hdr_threshold = 0.5
+	env.adjustment_brightness = 0.69
+	env.adjustment_contrast = 1.15
+	env.adjustment_saturation = 1.57
+
+
+func set_interrogation_world_environment() -> void:
+	var env = $WorldEnvironment.environment
+	env.glow_hdr_threshold = 0.36
+	env.adjustment_brightness = 0.69
+	env.adjustment_contrast = 1.3
+	env.adjustment_saturation = 3.2
+
+
+func _on_phone_pause_time(code: String) -> void:
+	if code == "pause":
+		last_speed = time_speed
+		time_speed = 0
+	else:
+		time_speed = last_speed

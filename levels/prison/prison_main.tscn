@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://bmk88vtqb1w61"]
+[gd_scene load_steps=12 format=3 uid="uid://bmk88vtqb1w61"]
 
 [ext_resource type="PackedScene" uid="uid://cybpi0ewlyngt" path="res://entities/you/Player.tscn" id="1_desnt"]
 [ext_resource type="Script" path="res://levels/prison/prison_main.gd" id="1_jgefm"]
@@ -8,9 +8,16 @@
 [ext_resource type="PackedScene" uid="uid://uel0km4cx1a7" path="res://levels/ui/phone/Phone.tscn" id="6_na1ej"]
 [ext_resource type="Shader" path="res://levels/prison/vignette.gdshader" id="6_qeorp"]
 [ext_resource type="Texture2D" uid="uid://dhvm8lgmyort8" path="res://assets/sprites/objects/fog-mask-eye.png" id="7_qjdki"]
+[ext_resource type="PackedScene" uid="uid://dqg5ahoxkn1kj" path="res://levels/interrogation/room_interrogation.tscn" id="9_xlcym"]
 
 [sub_resource type="Environment" id="Environment_ngtmt"]
 background_mode = 3
+glow_enabled = true
+glow_intensity = 1.45
+glow_strength = 1.22
+glow_hdr_threshold = 0.5
+glow_hdr_scale = 0.21
+glow_hdr_luminance_cap = 21.85
 fog_light_color = Color(0.371396, 0.377392, 0.358359, 1)
 fog_density = 0.0
 fog_sky_affect = 0.0
@@ -18,9 +25,9 @@ volumetric_fog_albedo = Color(0.739452, 0.749282, 0.579624, 1)
 volumetric_fog_emission = Color(0.0643462, 0.0641656, 0.0152385, 1)
 volumetric_fog_emission_energy = 0.0
 adjustment_enabled = true
-adjustment_brightness = 0.95
+adjustment_brightness = 0.69
 adjustment_contrast = 1.15
-adjustment_saturation = 0.9
+adjustment_saturation = 1.57
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_o14cd"]
 shader = ExtResource("6_qeorp")
@@ -50,6 +57,9 @@ collision_mask = 3
 [node name="RoomCell" parent="." instance=ExtResource("2_dugvu")]
 light_mask = 3
 metadata/_edit_group_ = true
+
+[node name="RoomInterrogation" parent="." instance=ExtResource("9_xlcym")]
+visible = false
 
 [node name="tempTimerText" type="RichTextLabel" parent="."]
 anchors_preset = -1
@@ -86,3 +96,4 @@ visible = false
 [connection signal="lock_player_input" from="." to="Player" method="_on_lock_player_input"]
 [connection signal="unlock_player_input" from="." to="Player" method="_on_unlock_player_input"]
 [connection signal="youre_awake" from="RoomCell" to="Player" method="_on_room_cell_youre_awake"]
+[connection signal="pause_time" from="Phone" to="." method="_on_phone_pause_time"]

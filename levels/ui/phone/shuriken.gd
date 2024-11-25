@@ -24,13 +24,11 @@ func _process(delta: float) -> void:
 
 
 func _on_body_entered(body: Node) -> void:
-	print("shuriken detect hit - " + body.name)
 	if flying:
 		you_lose.emit()
 
 
 func _on_area_entered(area: Area2D) -> void:
-	print("shuriken detect hit - " + area.name)
 	flying = false
 	#linear_velocity /= 2
 	$CollisionShape2D.disabled = true

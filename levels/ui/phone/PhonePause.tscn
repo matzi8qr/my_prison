@@ -1,0 +1,70 @@
+[gd_scene load_steps=5 format=3 uid="uid://c62fnwqcx3ax0"]
+
+[ext_resource type="Script" path="res://levels/ui/phone/phone_pause.gd" id="1_xrvab"]
+[ext_resource type="Texture2D" uid="uid://xf7s40fonmms" path="res://assets/sprites/ui/phone_bg.png" id="2_sed7l"]
+[ext_resource type="FontFile" uid="uid://dxldtbcnfoyby" path="res://assets/fonts/tinyfont.ttf" id="3_e66qg"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_tbcis"]
+bg_color = Color(0.309804, 0.309804, 0.278431, 1)
+
+[node name="PhonePause" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_xrvab")
+
+[node name="PhoneBG" type="TextureRect" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 0.999569
+anchor_bottom = 1.00032
+offset_left = -291.0
+offset_top = -83.0
+offset_right = 15.496
+offset_bottom = 567.792
+texture = ExtResource("2_sed7l")
+expand_mode = 1
+stretch_mode = 4
+
+[node name="TimeBar" type="Panel" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 1.012
+offset_left = -6.0
+offset_right = 0.175903
+offset_bottom = 132.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_tbcis")
+
+[node name="TimeLabel" type="RichTextLabel" parent="TimeBar"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 1.0
+anchor_top = 0.0133333
+anchor_right = 1.0
+anchor_bottom = 0.0133333
+offset_left = -390.0
+offset_top = 13.24
+offset_right = 35.0
+offset_bottom = 128.24
+theme_override_fonts/normal_font = ExtResource("3_e66qg")
+theme_override_font_sizes/normal_font_size = 102
+bbcode_enabled = true
+text = "[color=DBB614]11:11[/color]
+"
+
+[node name="QuitButton" type="Button" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.401042
+anchor_top = 0.618827
+anchor_right = 0.686632
+anchor_bottom = 0.780864
+offset_right = 8.0
+offset_bottom = 8.0
+text = "	quit game"
+metadata/_edit_use_anchors_ = true
+
+[connection signal="pressed" from="QuitButton" to="." method="_on_quit_button_pressed"]

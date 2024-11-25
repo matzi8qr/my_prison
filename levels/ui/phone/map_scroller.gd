@@ -17,7 +17,8 @@ func _ready() -> void:
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
-	if game_root.visible:
+	if game_root.visible && game_root.phone_visible:
+		AudioServer.set_bus_mute(AudioServer.get_bus_index("phone"), false)
 		if paused:
 			if Input.is_action_just_pressed("interact"):
 				paused = false
@@ -25,7 +26,6 @@ func _process(delta: float) -> void:
 		elif not paused:
 			position.x += velocity
 			# TODO attempt reposition and generate next chunk
-			
 
 func spawn_shuriken() -> void:
 	var rand_y = randi_range(64, get_viewport_rect().size.y - 64)
@@ -46,13 +46,23 @@ func _reset_velocity() -> void:
 
 func _on_phone_cat_visibility_changed() -> void:
 	# when tab switched or phone closed
-	paused = true
-	pause.emit()
-	_on_you_lose()
+	if game_root:
+		if game_root.phone_visible && game_root.visible:
+			try_play_song()
+		else:
+			paused = true
+			pause.emit()
+			AudioServer.set_bus_mute(AudioServer.get_bus_index("phone"), true)
+			position = Vector2.ZERO
 
  
 func _on_you_lose() -> void:
-	print("you_lose")
 	position = Vector2.ZERO
 	paused = true
+	try_play_song()
 	# game over and restart
+	
+func try_play_song() -> void:
+	var player = $MusicPlayer
+	if not player.playing && not AudioServer.is_bus_mute(1):
+		$MusicPlayer.play()

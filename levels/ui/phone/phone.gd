@@ -16,6 +16,8 @@ var cur_display = Display.HOME
 var unpaused_time_speed
 var timer_blink_counter = -1
 
+signal pause_time(code)
+
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	# link taskbar buttons to methods
@@ -60,4 +62,12 @@ func _button_ninjacat() -> void:
 	
 
 func _button_settings() -> void:
-	print("pause")
+	cur_screen.visible = false
+	pause_time.emit("pause")
+	cur_display = Display.PAUSE
+	cur_screen = display_keys[cur_display]
+	cur_screen.visible = true
+
+
+func _on_phone_pause_visibility_changed() -> void:
+	pause_time.emit("unpause")

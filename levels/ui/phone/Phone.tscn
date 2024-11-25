@@ -1,9 +1,10 @@
-[gd_scene load_steps=6 format=3 uid="uid://uel0km4cx1a7"]
+[gd_scene load_steps=7 format=3 uid="uid://uel0km4cx1a7"]
 
 [ext_resource type="Texture2D" uid="uid://b6gtkodct1j56" path="res://assets/sprites/ui/phone_border.png" id="1_mhmsf"]
 [ext_resource type="Script" path="res://levels/ui/phone/phone.gd" id="1_pr2cb"]
 [ext_resource type="PackedScene" uid="uid://ds40j68e3y8bb" path="res://levels/ui/phone/PhoneHome.tscn" id="3_6k8qe"]
 [ext_resource type="PackedScene" uid="uid://vy4meor2dwon" path="res://levels/ui/phone/PhoneCat.tscn" id="4_srin2"]
+[ext_resource type="PackedScene" uid="uid://c62fnwqcx3ax0" path="res://levels/ui/phone/PhonePause.tscn" id="5_tmo7h"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_3ehib"]
 bg_color = Color(0.388235, 0.388235, 0.368627, 1)
@@ -63,6 +64,9 @@ render_target_update_mode = 4
 [node name="PhoneCat" parent="ScreenMargins/VBoxContainer/SubViewportContainer/PhoneViewport" instance=ExtResource("4_srin2")]
 visible = false
 
+[node name="PhonePause" parent="ScreenMargins/VBoxContainer/SubViewportContainer/PhoneViewport" instance=ExtResource("5_tmo7h")]
+visible = false
+
 [node name="Panel" type="Panel" parent="ScreenMargins/VBoxContainer"]
 light_mask = 64
 visibility_layer = 64
@@ -104,3 +108,6 @@ custom_minimum_size = Vector2(60, 0)
 layout_mode = 2
 focus_mode = 0
 text = "pause"
+
+[connection signal="visibility_changed" from="." to="ScreenMargins/VBoxContainer/SubViewportContainer/PhoneViewport/PhoneCat" method="_on_phone_visibility_changed"]
+[connection signal="visibility_changed" from="ScreenMargins/VBoxContainer/SubViewportContainer/PhoneViewport/PhonePause" to="." method="_on_phone_pause_visibility_changed"]

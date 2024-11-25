@@ -1,3 +1,31 @@
-[gd_scene format=3 uid="uid://dqg5ahoxkn1kj"]
+[gd_scene load_steps=5 format=3 uid="uid://dqg5ahoxkn1kj"]
+
+[ext_resource type="Texture2D" uid="uid://b6sr0ascod3lr" path="res://assets/sprites/objects/interrogation_table.png" id="1_kbs5x"]
+[ext_resource type="PackedScene" uid="uid://haqflmirnyuv" path="res://entities/objects/eye_light.tscn" id="2_lcu7o"]
+[ext_resource type="Texture2D" uid="uid://bk7i0ko5oc3ml" path="res://assets/sprites/me/eye_default.png" id="2_ym7rn"]
+[ext_resource type="Texture2D" uid="uid://dfsngfgkpuq7u" path="res://assets/sprites/me/eye_default_mask.png" id="3_n41d6"]
 
 [node name="RoomInterrogation" type="Node2D"]
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(615.219, 467.094)
+scale = Vector2(2.8801, 2.20965)
+texture = ExtResource("1_kbs5x")
+
+[node name="Monster" type="Node2D" parent="."]
+position = Vector2(792, 180)
+rotation = 0.151844
+scale = Vector2(0.28, 0.28)
+metadata/_edit_group_ = true
+
+[node name="EyeSprite" type="Sprite2D" parent="Monster"]
+modulate = Color(1.41, 1.34, 0.5, 1)
+texture = ExtResource("2_ym7rn")
+
+[node name="EyeGlow" type="PointLight2D" parent="Monster"]
+color = Color(0.858824, 0.74902, 0.258824, 1)
+energy = 0.24
+texture = ExtResource("3_n41d6")
+
+[node name="EyeLight" parent="." instance=ExtResource("2_lcu7o")]
+position = Vector2(466, 62)
